@@ -79,7 +79,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func rollAll() {
         if !diceArray.isEmpty {
             for dice in diceArray {
-                roll(dice:dice)
+                for dice in diceArray {
+                    dice.removeFromParentNode()
+                }
             }
         }
     }
@@ -96,6 +98,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func rollAgain(_ sender: UIBarButtonItem) {
        rollAll()
+    }
+    
+    @IBAction func removeAllDice(_ sender: UIBarButtonItem) {
+        if !diceArray.isEmpty {
+            diceArray.removeAll()
+        }
     }
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
